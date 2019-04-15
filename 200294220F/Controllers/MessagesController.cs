@@ -15,9 +15,17 @@ namespace _200294220F.Controllers
         private _200294220FContext db = new _200294220FContext();
 
         // GET: Messages
+        [Route("")]
+        [Route("Chat")]
+        [Route("home")]
         public ActionResult Index()
         {
-            return View(db.Messages.ToList());
+            MessageViewModel vm = new MessageViewModel()
+            {
+                Messages = db.Messages.ToList()
+            };
+            //vm.Messages = vm.Messages.OrderByDescending(p => p.PostTime.Date).ThenBy(p => p.PostTime.TimeOfDay).ToList();
+            return View(vm);
         }
 
         // GET: Messages/Details/5

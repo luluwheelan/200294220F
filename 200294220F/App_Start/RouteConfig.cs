@@ -13,6 +13,9 @@ namespace _200294220F
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
+            //Add  attribute route
+            routes.MapMvcAttributeRoutes();
+
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
