@@ -15,9 +15,7 @@ namespace _200294220F.Controllers
         private _200294220FContext db = new _200294220FContext();
 
         // GET: Messages
-        [Route("")]
         [Route("Chat")]
-        [Route("home")]
         public ActionResult Index()
         {
             MessageViewModel vm = new MessageViewModel()
