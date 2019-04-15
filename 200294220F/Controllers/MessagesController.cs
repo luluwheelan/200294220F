@@ -22,7 +22,7 @@ namespace _200294220F.Controllers
             {
                 Messages = db.Messages.ToList()
             };
-            //vm.Messages = vm.Messages.OrderByDescending(p => p.PostTime.Date).ThenBy(p => p.PostTime.TimeOfDay).ToList();
+            vm.Messages = vm.Messages.OrderByDescending(p => p.PostTime.Date).ThenBy(p => p.PostTime.TimeOfDay).ToList();
             return View(vm);
         }
 
@@ -36,21 +36,49 @@ namespace _200294220F.Controllers
         // POST: Messages/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public ActionResult Create([Bind(Include = "Id,User,message,PostTime")] Message message)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        db.Messages.Add(message);
+        //        db.SaveChanges();
+        //        return RedirectToAction("Index");
+        //    }
+
+        //    return View(message);
+        //}
+
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,User,message,PostTime")] Message message)
+        public ActionResult Index([Bind(Include = "User,message")]Message newMessage)
         {
+            MessageViewModel vm;
             if (ModelState.IsValid)
             {
-                db.Messages.Add(message);
+
+                db.Messages.Add(newMessage);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                ModelState.Clear();
+                vm = new MessageViewModel()
+                {
+                    Messages = db.Messages.ToList()
+                };
+                vm.Messages = vm.Messages.OrderByDescending(p => p.PostTime.Date).ThenBy(p => p.PostTime.TimeOfDay).ToList();
+                return PartialView("Index", vm);
             }
 
-            return View(message);
+            vm = new MessageViewModel()
+            {
+                Messages = db.Messages.ToList()
+            };
+            vm.Messages = vm.Messages.OrderByDescending(p => p.PostTime.Date).ThenBy(p => p.PostTime.TimeOfDay).ToList();
+            return PartialView("Index", vm);
+
         }
 
-        
+
 
         protected override void Dispose(bool disposing)
         {
