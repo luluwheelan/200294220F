@@ -21,8 +21,7 @@ namespace _200294220F.Models
         [DisplayName("Name")]
         public virtual string User { get; set; }
         [Required(ErrorMessage = "What do you want to tell us?")]
-        [StringLength(500, MinimumLength = 10)]
-        [DataType(DataType.MultilineText)]
+        [StringLength(500, MinimumLength = 5)]
         public virtual string message { get; set; }
 
         //Set PostTime dafault value.

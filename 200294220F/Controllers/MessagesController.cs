@@ -27,32 +27,9 @@ namespace _200294220F.Controllers
         }
 
 
-        // GET: Messages/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
-
-        // POST: Messages/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public ActionResult Create([Bind(Include = "Id,User,message,PostTime")] Message message)
-        //{
-        //    if (ModelState.IsValid)
-        //    {
-        //        db.Messages.Add(message);
-        //        db.SaveChanges();
-        //        return RedirectToAction("Index");
-        //    }
-
-        //    return View(message);
-        //}
-
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Index([Bind(Include = "User,message")]Message newMessage)
+        public ActionResult Index([Bind(Include = "Id,User,message,PostTime")]Message newMessage)
         {
             MessageViewModel vm;
             if (ModelState.IsValid)
@@ -71,14 +48,36 @@ namespace _200294220F.Controllers
 
             vm = new MessageViewModel()
             {
-                Messages = db.Messages.ToList()
+                Messages = db.Messages.ToList(),
+                newMessage = newMessage
             };
             vm.Messages = vm.Messages.OrderByDescending(p => p.PostTime.Date).ThenBy(p => p.PostTime.TimeOfDay).ToList();
             return PartialView("Index", vm);
 
         }
 
+        // GET: Message/Create
+        public ActionResult Create()
+        {
+            return View();
+        }
 
+        // POST: Messages/Create
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Create([Bind(Include = "Id,User,message,PostTime")] Message message)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Messages.Add(message);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+
+            return View(message);
+        }
 
         protected override void Dispose(bool disposing)
         {
