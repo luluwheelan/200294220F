@@ -13,21 +13,21 @@ namespace _200294220F.Models
             Message m1 = new Message
             {
                 User = "Lulu",
-                message = "Hey, this is going to be a good one",
+                Info = "Hey, this is going to be a good one",
                 PostTime = DateTime.Now.Date.AddHours(24).AddMinutes(30)
             };
 
             Message m2 = new Message
             {
                 User = "Lulu",
-                message = "Can not fixed it.",
+                Info = "Can not fixed it.",
                 PostTime = DateTime.Now.Date.AddHours(48).AddMinutes(30)
             };
 
             Message m3 = new Message
             {
                 User = "Lulu",
-                message = "What did I miss?",
+                Info = "What did I miss?",
             };
 
             context.Messages.Add(m1);

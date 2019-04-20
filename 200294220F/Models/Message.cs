@@ -20,9 +20,10 @@ namespace _200294220F.Models
         [StringLength(10, MinimumLength = 2)]
         [DisplayName("Name")]
         public virtual string User { get; set; }
+
         [Required(ErrorMessage = "What do you want to tell us?")]
         [StringLength(500, MinimumLength = 5)]
-        public virtual string message { get; set; }
+        public virtual string Info { get; set; }
 
         //Set PostTime dafault value.
         [DisplayName("Posted At")]

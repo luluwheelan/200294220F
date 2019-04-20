@@ -29,7 +29,7 @@ namespace _200294220F.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Index([Bind(Include = "Id,User,message,PostTime")]Message newMessage)
+        public ActionResult Index([Bind(Include = "User,Info")]Message newMessage)
         {
             MessageViewModel vm;
             if (ModelState.IsValid)
@@ -67,7 +67,7 @@ namespace _200294220F.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,User,message,PostTime")] Message message)
+        public ActionResult Create([Bind(Include = "User,Info")] Message message)
         {
             if (ModelState.IsValid)
             {
