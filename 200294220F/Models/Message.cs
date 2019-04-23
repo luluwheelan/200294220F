@@ -23,6 +23,7 @@ namespace _200294220F.Models
 
         [Required(ErrorMessage = "What do you want to tell us?")]
         [StringLength(500, MinimumLength = 5)]
+        [DisplayName("Message")]
         public virtual string Info { get; set; }
 
         //Set PostTime dafault value.

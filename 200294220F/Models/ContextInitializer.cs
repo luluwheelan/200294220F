@@ -20,14 +20,14 @@ namespace _200294220F.Models
             Message m2 = new Message
             {
                 User = "Lulu",
-                Info = "Can not fixed it.",
+                Info = "Seeded message from initializer.",
                 PostTime = DateTime.Now.Date.AddHours(48).AddMinutes(30)
             };
 
             Message m3 = new Message
             {
                 User = "Lulu",
-                Info = "What did I miss?",
+                Info = "What happens next?",
             };
 
             context.Messages.Add(m1);
